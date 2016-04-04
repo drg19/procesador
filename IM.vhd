@@ -28,6 +28,8 @@ architecture Behavioral of IM is
 	
 	signal instructions : rom_type := InitRomFromFile("instructions.data");
 
+--//////////////////////////////////////////////////
+--/////////////////////////////////////////////////////
 begin
 
 	process(reset,adres,instructions)--clk)
