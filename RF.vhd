@@ -1,48 +1,48 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    18:16:18 03/31/2016 
--- Design Name: 
--- Module Name:    RF - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
-----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+-- use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity RF is
-    Port ( rs1 : in  STD_LOGIC_VECTOR (0 downto 5);
-           rs2 : in  STD_LOGIC_VECTOR (0 downto 5);
-           rd : in  STD_LOGIC_VECTOR (0 downto 5);
-           reset : in  STD_LOGIC;
-           DataToWrite : in  STD_LOGIC_VECTOR (0 downto 31);
-           CRS1 : out  STD_LOGIC_VECTOR (0 downto 31);
-           CRS2 : out  STD_LOGIC_VECTOR (0 downto 31));
-end RF;
+entity registerFile is
+    Port ( reset : in  STD_LOGIC;
+           rS1 : in  STD_LOGIC_VECTOR (4 downto 0);
+           rS2 : in  STD_LOGIC_VECTOR (4 downto 0);
+           rD : in  STD_LOGIC_VECTOR (4 downto 0);
+			  dataToWrite : in STD_LOGIC_VECTOR (31 downto 0);
+           cRS1 : out  STD_LOGIC_VECTOR (31 downto 0);
+           cRS2 : out  STD_LOGIC_VECTOR (31 downto 0));
+           --cRD : out  STD_LOGIC_VECTOR (31 downto 0));
+end registerFile;
 
-architecture Behavioral of RF is
+architecture arqRegisterFile of registerFile is
+
+	type ram_type is array (0 to 39) of std_logic_vector (31 downto 0);
+	signal registers : ram_type :=(others => x"00000000");
 
 begin
-
-
-end Behavioral;
-
+--,reset,registerSource1,registerSource2,registerDestination,writeEnable,dataToWrite
+	process(reset,rS1,rS2,rD,dataToWrite)--clkFPGA)
+	begin
+		--if(rising_edge(clkFPGA))then
+			if(reset = '0')then
+				cRS1 <= (others=>'0');
+				cRS2 <= (others=>'0');
+				registers <= (others => x"00000000");
+			else
+				cRS1 <= registers(conv_integer(rS1));
+				cRS2 <= registers(conv_integer(rS2));
+				if(rD /= "000000")then
+					registers(conv_integer(rD)) <= dataToWrite;
+				end if;
+			end if;
+		--end if;
+	end process;
+end arqRegisterFile;
