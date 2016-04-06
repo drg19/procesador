@@ -26,7 +26,7 @@ architecture Behavioral of IM is
 				return temp_mem;
 	end function;
 	
-	signal instructions : rom_type := InitRomFromFile("instructions.data");
+	signal instructions : rom_type := InitRomFromFile("memoria.txt");
 
 --//////////////////////////////////////////////////
 --/////////////////////////////////////////////////////

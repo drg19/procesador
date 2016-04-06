@@ -31,7 +31,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity UC is
     Port ( op : in  STD_LOGIC_VECTOR(1 downto 0);
-           op3  : in  STD_LOGIC_VECTOR(2 downto 0);
+           op3  : in  STD_LOGIC_VECTOR(5 downto 0);
            Aluop : out  STD_LOGIC_VECTOR(5 downto 0));
 end UC;
 
@@ -57,7 +57,9 @@ process (op,op3)
 				when "000111" =>
 						Aluop <= "000111";--XOR
 				when "000001" =>
-						Aluop <= "000001";--AND		
+						Aluop <= "000001";--AND
+				when others =>
+						Aluop <= "111111";--others
 			end case;
 				
 		end if;	
