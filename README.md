@@ -1,1 +1,3 @@
 # procesador
+# DIEGO RAMIREZ GOMEZ
+# MATEO RESTREPO
