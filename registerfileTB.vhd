@@ -83,9 +83,9 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin		
-		reset <= '0';
-		rS1 <= "00011";
-		rS2 <= "00110";
+		reset <= '1';
+		rS1 <= "00001";
+		rS2 <= "00100";
 		rD  <= "00101";
 		dataToWrite <= "00000000000000000000000000001110";
       wait for 100 ns;	

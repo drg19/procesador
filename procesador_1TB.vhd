@@ -53,10 +53,11 @@ BEGIN
    begin		
       
 		
-		reset <= '0';
+		reset <= '1';
       wait for 100 ns;
 		
 		reset <= '1';
+		wait for 100 ns;
      
 
       wait;

@@ -58,7 +58,7 @@ architecture Behavioral of pros1 is
 	
 	component nPC 
     Port ( addres : in  STD_LOGIC_VECTOR (31 downto 0);
-           clkfpga : in  STD_LOGIC;
+           clk : in  STD_LOGIC;
            reset : in  STD_LOGIC;
            sgteinstruccion : out  STD_LOGIC_VECTOR (31 downto 0));
 	end component;
@@ -71,7 +71,7 @@ begin
 
 	nextPC : nPC
 	port map( addres => D,
-				 clkfpga => clk,
+				 clk => clk,
 				 reset => reset,
 				 sgteinstruccion => C
 			);
@@ -88,7 +88,7 @@ begin
 -----------------------------------
 	Sum: Sumador
 	port map(
-					A => "00000000000000000000000000000100",
+					A => "00000000000000000000000000000001",
 					B => C,
 					Cout => D
 				);
@@ -129,11 +129,11 @@ begin
 					CRS1 => H,
 					CRS2 => I,
 					ALUOP =>G(5 downto 0),
-					ALURESULT => ALUresult
+					ALURESULT => J
 				);
 				
 ----------------------------------------------
-	
+ALURESULT <= J;
 
 end Behavioral;
 

@@ -42,7 +42,7 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin
-		reset <='1';
+		reset <='0';
       adres <= "00000000000000000000000000000010";
    end process;
 

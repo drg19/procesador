@@ -34,7 +34,7 @@ begin
 
 	process(reset,adres,instructions)--clk)
 	begin
-			if(reset = '1')then
+			if(reset = '0')then
 				 IMout <= (others=>'0');
 			else
 				 IMout <= instructions(conv_integer(adres(5 downto 0)));
